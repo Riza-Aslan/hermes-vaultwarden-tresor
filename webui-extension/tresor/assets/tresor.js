@@ -503,6 +503,10 @@
     ov.style.display = 'flex';
     z.offen = true;
     ansicht(z.detail ? z.ansicht : 'liste');
+    // Aktive Kern-Tabs (z. B. Kanban) abwählen und merken, damit nur der Tresor markiert ist.
+    z.verdeckt = Array.from(document.querySelectorAll('.rail .nav-tab.active, .rail .rail-btn.active, .sidebar-nav .nav-tab.active'))
+      .filter((b) => b.id !== RAIL_ID && b.id !== MOBIL_ID);
+    z.verdeckt.forEach((b) => b.classList.remove('active'));
     for (const id of [RAIL_ID, MOBIL_ID]) { const b = document.getElementById(id); if (b) b.classList.add('active'); }
     document.addEventListener('keydown', esc, true);
     if (!z.detail) leer();
@@ -514,6 +518,9 @@
     if (ov) ov.style.display = 'none';
     z.offen = false;
     for (const id of [RAIL_ID, MOBIL_ID]) { const b = document.getElementById(id); if (b) b.classList.remove('active'); }
+    // Vorher aktive Kern-Tabs wiederherstellen (ein Leisten-Klick setzt danach selbst neu).
+    (z.verdeckt || []).forEach((b) => b.classList.add('active'));
+    z.verdeckt = [];
     document.removeEventListener('keydown', esc, true);
     // Beim Schließen alles Aufgedeckte vergessen
     z.detail = null; z.aktiv = null;
