@@ -1,0 +1,18 @@
+{
+  "id": "tresor",
+  "name": "Tresor",
+  "description": "Vaultwarden-Sammlung in der Seitenleiste: Logins, SSH-Schlüssel, Notizen und Zusatzfelder ansehen, kopieren, anlegen, bearbeiten, in den Papierkorb legen. Sidecar: tresordienst.py (hermes-tresor.service).",
+  "version": "1.0.0",
+  "author": "Riza-Aslan",
+  "assets": {"scripts": ["assets/tresor.js"], "stylesheets": ["assets/tresor.css"]},
+  "capabilities": ["manifest-bundle", "loopback-sidecar"],
+  "lifecycle": {"webui_restart_required": false, "sidecar_start_required": true, "native_host_start_required": false, "native_host_autostart": "none"},
+  "permissions": {
+    "webui_api": {"read": [], "write": []}, "webui_navigation": false,
+    "dom": {"owned": true, "mutates_core_views": true},
+    "storage": {"owned": false, "shared_webui_keys": []},
+    "loopback_sidecar": true, "native_host": false,
+    "filesystem": {"arbitrary": false, "serves_bundled_assets": true},
+    "network_external": false, "embeds_iframe": false
+  }
+}

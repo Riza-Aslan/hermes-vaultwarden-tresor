@@ -1,0 +1,23 @@
+name: vaultwarden-zugang
+kind: standalone
+version: 1.0.0
+manifest_version: 2
+description: Zugriff auf einzelne Vaultwarden-Eintraege zur Laufzeit - ein Wert geht nur in die Umgebung eines Unterbefehls, nie in den sichtbaren Kontext des Modells.
+author: Riza-Aslan
+license: MIT
+homepage: https://github.com/Riza-Aslan/hermes-vaultwarden-tresor
+tags: [secrets, vaultwarden, bitwarden]
+requires_hermes: ">=0.20.0"
+platforms: []
+optional_env:
+  - VW_BASIS
+  - VW_EMAIL
+  - VW_PASSWORT
+  - VW_SAMMLUNG
+  - VW_CA_FILE
+  - VW_TLS_RELAXED
+  - VW_TLS_INSECURE
+external_dependencies:
+  - name: openssl
+    check: "openssl version"
+    install: "apt-get install -y openssl"

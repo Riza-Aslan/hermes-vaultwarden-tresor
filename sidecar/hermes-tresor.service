@@ -1,0 +1,17 @@
+# Als User-Dienst des Benutzers, unter dem Hermes laeuft:
+#   cp hermes-tresor.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user enable --now hermes-tresor
+# Damit er auch ohne Anmeldung laeuft:  loginctl enable-linger $USER
+[Unit]
+Description=Tresordienst (Sidecar der WebUI-Erweiterung Tresor, Vaultwarden)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/tresor/tresordienst.py
+WorkingDirectory=%h/tresor
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

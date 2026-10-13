@@ -1,0 +1,17 @@
+{
+  "extensions": [
+    {
+      "id": "tresor",
+      "name": "Tresor",
+      "description": "Vaultwarden-Sammlung: Zugänge ansehen, kopieren, anlegen und bearbeiten. Geheimnisse nur auf Klick.",
+      "scripts": ["assets/tresor.js?v=1"],
+      "stylesheets": ["assets/tresor.css?v=1"],
+      "sidecar": {
+        "type": "loopback",
+        "origin": "http://127.0.0.1:17831",
+        "health_path": "/health",
+        "proxy_auth": "token-v1"
+      }
+    }
+  ]
+}
